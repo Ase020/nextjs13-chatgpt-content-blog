@@ -1,7 +1,6 @@
-import Footer from "./(components)/Footer";
-import Navbar from "./(components)/Navbar";
 import "./globals.css";
 import { Inter, Open_Sans } from "next/font/google";
+import { Navbar, Footer } from "./(components)";
 
 const inter = Inter({ subsets: ["latin"] });
 const openSans = Open_Sans({ subsets: ["latin"] });
