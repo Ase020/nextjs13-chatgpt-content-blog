@@ -31,14 +31,17 @@ const Tech = (props: Props) => {
         <Card
           className="col-span-1 row-span-1 mt-10 sm:mt-0 flex justify-between gap-3"
           imageHeight="h-48"
+          isSmallCard
         />
         <Card
           className="col-span-1 row-span-1 mt-10 sm:mt-0 flex justify-between gap-3"
           imageHeight="h-48"
+          isSmallCard
         />
         <Card
           className="col-span-1 row-span-1 mt-10 sm:mt-0 flex justify-between gap-3"
           imageHeight="h-48"
+          isSmallCard
         />
       </div>
     </section>
