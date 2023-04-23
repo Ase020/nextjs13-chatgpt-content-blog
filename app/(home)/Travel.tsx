@@ -16,9 +16,21 @@ const Travel = (props: Props) => {
       </div>
 
       <div className="sm:flex justify-between gap-8">
-        <Card className="bg-wh-500 mt-5 sm:mt-0 basis-1/3" imageHeight="h-80" />
-        <Card className="bg-wh-500 mt-5 sm:mt-0 basis-1/3" imageHeight="h-80" />
-        <Card className="bg-wh-500 mt-5 sm:mt-0 basis-1/3" imageHeight="h-80" />
+        <Card
+          className="bg-wh-500 mt-5 sm:mt-0 basis-1/3"
+          imageHeight="h-80"
+          isSmallCard
+        />
+        <Card
+          className="bg-wh-500 mt-5 sm:mt-0 basis-1/3"
+          imageHeight="h-80"
+          isSmallCard
+        />
+        <Card
+          className="bg-wh-500 mt-5 sm:mt-0 basis-1/3"
+          imageHeight="h-80"
+          isSmallCard
+        />
       </div>
       <Card
         className="bg-wh-500 sm:flex items-center justify-between gap-3 mb-5 mt-7"

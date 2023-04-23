@@ -1,5 +1,5 @@
-import { Other, Sidebar, Subscribe } from "./(components)";
-import { Tech, Travel, Trending } from "./(home)";
+import { Sidebar, Subscribe } from "./(components)";
+import { Tech, Travel, Other, Trending } from "./(home)";
 
 export default function Home() {
   return (
