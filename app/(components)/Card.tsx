@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { Post } from "@prisma/client";
 
 type Props = {
   className?: string;
   imageHeight?: string;
   isSmallCard?: boolean;
   isLongForm?: boolean;
+  post: Post;
 };
 
 const Card = ({
@@ -12,30 +14,36 @@ const Card = ({
   imageHeight,
   isLongForm = false,
   isSmallCard = false,
+  post,
 }: Props) => {
+  const { id, author, title, snippet, createdAt, image } = post || {};
+  const date = new Date(createdAt);
+  const options = { year: "numeric", month: "long", day: "numeric" } as any;
+  const formattedDate = date.toLocaleDateString("en-US", options);
+
   return (
     <div className={className}>
       <Link
-        href="/"
+        href={`${process.env.NEXT_PUBLIC_URL}/post/${post?.id}`}
         className="basis-full hover:opacity-70 cursor-pointer transition ease-in-out delay-150"
       >
         <div className={`${imageHeight} w-auto mb-3 relative`}>img</div>
       </Link>
 
       <div className="basis-full ">
-        <Link href="/">
+        <Link href={`${process.env.NEXT_PUBLIC_URL}/post/${post?.id}`}>
           <h4
             className={`font-bold hover:text-accent-green
              ${isSmallCard ? "text-base line-clamp-2" : "text-lg"}
             `}
           >
-            title
+            {title}
           </h4>
         </Link>
 
         <div className={`${isSmallCard ? "my-2" : "flex my-3"} gap-3`}>
-          <h5 className="font-semibold text-xs">author</h5>
-          <h6 className="text-wh-300 text-xs">date</h6>
+          <h5 className="font-semibold text-xs">{post?.author}</h5>
+          <h6 className="text-wh-300 text-xs">{formattedDate}</h6>
         </div>
 
         <p
@@ -43,15 +51,7 @@ const Card = ({
             isLongForm ? "line-clamp-5" : "line-clamp-3"
           }`}
         >
-          Yeah, yes, it’s me again. EDDY ASHIOYA. Biko is away, in shags
-          somewhere, fussing over his grass or pigeons. Old age, things. Anyway,
-          I’m holding forte here. I haven’t forgotten the directions to this
-          place, even if the rain suggests I should rather be in bed, preferably
-          not alone—with some irredentist African author by my side. I see
-          things haven’t changed much here. The TV’s remote power button remains
-          jammed eh? The house feels the same. You still have the same hideous
-          curtains and vyombo za wageni are rotting in the wall unit. Kwani you
-          guys never have visitors?
+          {post?.snippet}
         </p>
       </div>
     </div>

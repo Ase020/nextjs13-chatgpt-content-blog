@@ -1,8 +1,12 @@
 import { Card } from "../(components)";
 
-type Props = {};
+import { Post } from "@prisma/client";
 
-const Travel = (props: Props) => {
+type Props = {
+  travelPosts: Array<Post>;
+};
+
+const Travel = ({ travelPosts }: Props) => {
   return (
     <section className="mt-10">
       <hr className="border-1 mx-10" />
@@ -19,22 +23,27 @@ const Travel = (props: Props) => {
         <Card
           className="bg-wh-500 mt-5 sm:mt-0 basis-1/3"
           imageHeight="h-80"
+          post={travelPosts[0]}
           isSmallCard
         />
         <Card
           className="bg-wh-500 mt-5 sm:mt-0 basis-1/3"
           imageHeight="h-80"
+          post={travelPosts[1]}
           isSmallCard
         />
         <Card
           className="bg-wh-500 mt-5 sm:mt-0 basis-1/3"
           imageHeight="h-80"
+          post={travelPosts[2]}
           isSmallCard
         />
       </div>
       <Card
         className="bg-wh-500 sm:flex items-center justify-between gap-3 mb-5 mt-7"
         imageHeight="h-80"
+        post={travelPosts[3]}
+        isLongForm
       />
     </section>
   );

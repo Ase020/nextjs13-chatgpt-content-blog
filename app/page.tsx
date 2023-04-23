@@ -1,16 +1,53 @@
+import { prisma } from "app/api/client";
+import { Post } from "@prisma/client";
 import { Sidebar, Subscribe } from "./(components)";
 import { Tech, Travel, Other, Trending } from "./(home)";
 
-export default function Home() {
+export const revalidate = 60;
+
+const getPosts = async () => {
+  const posts = await prisma.post.findMany();
+
+  return posts;
+};
+
+export default async function Home() {
+  const posts = await getPosts();
+
+  const formatPosts = () => {
+    const trendingPosts: Array<Post> = [];
+    const techPosts: Array<Post> = [];
+    const travelPosts: Array<Post> = [];
+    const otherPosts: Array<Post> = [];
+
+    posts.forEach((post: Post, i: number) => {
+      if (i < 4) {
+        trendingPosts.push(post);
+      }
+
+      if (post?.category === "Tech") {
+        techPosts.push(post);
+      } else if (post?.category === "Travel") {
+        travelPosts.push(post);
+      } else if (post?.category === "Interior Design") {
+        otherPosts.push(post);
+      }
+    });
+
+    return [travelPosts, techPosts, trendingPosts, otherPosts];
+  };
+
+  const [travelPosts, techPosts, trendingPosts, otherPosts] = formatPosts();
+
   return (
     <main className="leading-7 px-10">
-      <Trending />
+      <Trending trendingPosts={trendingPosts} />
 
       <div className="md:flex gap-10 mb-5">
         <div className="basis-3/4">
-          <Tech />
-          <Travel />
-          <Other />
+          <Tech techPosts={techPosts} />
+          <Travel travelPosts={travelPosts} />
+          <Other otherPosts={otherPosts} />
 
           <div className="hidden md:block">
             <Subscribe />
