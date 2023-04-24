@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { Post } from "@prisma/client";
 
@@ -14,7 +15,19 @@ const TrendingCard = ({ className, post }: TrendingCardProps) => {
       // href="/"
       className={`${className} sm:mt-0 mt-7 block w-full sm:h-auto h-96 relative hover:opacity-70 cursor-pointer transition ease-in-out delay-150`}
     >
-      <div className="relative w-full h-full z-0 bg-wh-900">image</div>
+      <div className="relative w-full h-full z-0 ">
+        <Image
+          fill
+          style={{ objectFit: "cover" }}
+          alt="tech"
+          placeholder="blur"
+          sizes="(max-width: 480px) 100vw,
+                 (max-width: 768px) 75vw,
+                 (max-width: 1060px) 50vw,
+                 33vw"
+          src={post?.image}
+        />
+      </div>
       <div className="absolute bg-gradient-gradual top-0 left-0 z-1 w-full h-full" />
       <div className="absolute bottom-0 left-0 z-2 p-3">
         <h4 className="inline-block font-semibold px-5 py-1 bg-accent-orange text-wh-900">

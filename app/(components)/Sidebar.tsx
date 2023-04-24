@@ -1,5 +1,7 @@
+import Image from "next/image";
 import SocialLinks from "./SocialLinks";
 import Subscribe from "./Subscribe";
+import { aboutProfile, ad2 } from "@/public/assets";
 
 type Props = {};
 
@@ -18,13 +20,35 @@ const Sidebar = (props: Props) => {
         <Subscribe />
       </div>
 
-      <div className="bg-wh-900 my-8">advert img</div>
+      <div className="bg-wh-900 relative my-8">
+        <Image
+          // fill
+          style={{ objectFit: "cover" }}
+          className="hidden md:block my-8 w-full"
+          width={500}
+          height={1000}
+          alt="ad"
+          placeholder="blur"
+          sizes="(max-width: 480px) 100vw,
+                 (max-width: 768px) 75vw,
+                 (max-width: 1060px) 50vw,
+                 33vw"
+          src={ad2}
+        />
+      </div>
 
       <h4 className="bg-wh-900 py-3 px-5 text-wh-50 text-sm text-center font-bold ">
         About the Blog
       </h4>
 
-      <div className="bg-wh-900 my-8">profile img</div>
+      <div className="flex justify-center relative my-6">
+        <Image
+          style={{ objectFit: "cover", width: "500px", height: "250px" }}
+          alt="profile"
+          placeholder="blur"
+          src={aboutProfile}
+        />
+      </div>
 
       <h4 className="py-3 px-5 text-wh-500 text-center font-bold ">
         Felix Nyalenda

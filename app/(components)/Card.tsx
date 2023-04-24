@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Post } from "@prisma/client";
+import Image from "next/image";
 
 type Props = {
   className?: string;
@@ -27,7 +28,19 @@ const Card = ({
         href={`${process.env.NEXT_PUBLIC_URL}/post/${post?.id}`}
         className="basis-full hover:opacity-70 cursor-pointer transition ease-in-out delay-150"
       >
-        <div className={`${imageHeight} w-auto mb-3 relative`}>img</div>
+        <div className={`${imageHeight} w-auto mb-3 relative`}>
+          <Image
+            fill
+            style={{ objectFit: "cover" }}
+            alt="tech"
+            placeholder="blur"
+            sizes="(max-width: 480px) 100vw,
+                 (max-width: 768px) 75vw,
+                 (max-width: 1060px) 50vw,
+                 33vw"
+            src={image}
+          />
+        </div>
       </Link>
 
       <div className="basis-full ">
